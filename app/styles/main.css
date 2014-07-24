@@ -45,11 +45,11 @@ body {
       -ms-flex-direction: row;
           flex-direction: row;
   margin: 0 auto;
+  background: #000000 url("../images/header-bg.jpg") repeat left center;
 }
 
-.app-bar-container .logo {
+.app-bar-container img.logo {
   position: absolute;
-  background-color: #FAC321;
   top: 12px;
   left: 50%;
   width: 80px;
@@ -81,10 +81,6 @@ main {
   min-height: 100%;
 }
 
-.circle {
-  border-radius: 50%;
-}
-
 /** Larger Screens - desktops and tablets **/
 @media all and (min-width: 990px) {
   .app-bar {
@@ -96,7 +92,6 @@ main {
     height: 120px;
     padding: 0 16px;
     box-sizing: border-box;
-    background-color: #000000;
   }
 
   .app-bar::after {
@@ -107,11 +102,11 @@ main {
     clear: both;
   }
 
-  .app-bar-container .logo {
-    top: 45px;
+  .app-bar-container img.logo {
+    top: 36px;
     left: 40px;
-    width: 130px;
-    height: 130px;
+    width: 140px;
+    height: 140px;
     margin-left: 0;
   }
 
