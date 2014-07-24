@@ -45,7 +45,7 @@ body {
       -ms-flex-direction: row;
           flex-direction: row;
   margin: 0 auto;
-  background: #000000 url("../images/header-bg.jpg") repeat left center;
+  background: #000000 url("../images/header-bg.jpg") repeat left top;
 }
 
 .app-bar-container img.logo {
