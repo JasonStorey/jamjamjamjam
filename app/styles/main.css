@@ -54,17 +54,10 @@ body {
 
 .desciption-container {
   display: none;
-  position: relative;
-  height: 100%;
-  width: 300px;
-  float: left;
 }
-  
-.desciption-container .description {
-  position: absolute;
-  bottom: 0;
-  padding-bottom: 10px;
-  color: #ffffff;
+
+.contact-container {
+  display: none;
 }
 
 .promote-layer {
@@ -129,6 +122,56 @@ main {
 
   .desciption-container {
     display: block;
+    position: relative;
+    height: 100%;
+    width: 300px;
+    float: left;
+  }
+
+  .desciption-container .description {
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 10px;
+    color: #ffffff;
+  }
+
+  .contact-container {
+    display: block;
+    position: relative;
+    height: 100%;
+    float: right;
+    width: 200px;
+  }
+
+  .contact-container .contact {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding-bottom: 18px;
+  }
+
+  .contact-container .contact .contact-button {
+    padding: 0 10px;
+    display: inline-block;
+  }
+
+  .contact-button .email {
+    background: transparent url("../images/icon-email.png") no-repeat center center;
+    width: 36px;
+    height: 22px;
+    margin: 2px 0;
+  }
+
+  .contact-button .twitter {
+    background: transparent url("../images/icon-twitter.png") no-repeat center center;
+    width: 32px;
+    height: 26px;
+  }
+
+  .icon {
+    display: block;
+    background-color: red;
+    overflow: hidden;
   }
 
   main {
