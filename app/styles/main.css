@@ -36,7 +36,7 @@ body {
       -ms-flex-direction: row;
           flex-direction: row;
   margin: 0 auto;
-  background: #000000 url("../images/header-bg.jpg") repeat left top;
+  background: #000000 url("../images/header-bg.jpg") repeat center top;
 }
 
 .logo-container {
@@ -95,6 +95,7 @@ main {
     height: 120px;
     padding: 0 16px;
     box-sizing: border-box;
+    background-position: left top;
   }
 
   .app-bar::after {
