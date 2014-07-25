@@ -39,26 +39,32 @@ body {
   background: #000000 url("../images/header-bg.jpg") repeat left top;
 }
 
-.app-bar-container img.logo {
-  position: absolute;
+.logo-container {
+  position: relative;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.logo-container img.logo {
+  position: relative;
   top: 12px;
-  left: 50%;
   width: 80px;
   height: 80px;
-  margin-left: -40px;
 }
 
-.description-container {
+.desciption-container {
   display: none;
+  position: relative;
   height: 100%;
-  color: #ffffff;
-  padding-left: 185px;
+  width: 300px;
+  float: left;
 }
-
-.description-container .description {
+  
+.desciption-container .description {
   position: absolute;
   bottom: 0;
   padding-bottom: 10px;
+  color: #ffffff;
 }
 
 .promote-layer {
@@ -106,15 +112,22 @@ main {
     clear: both;
   }
 
-  .app-bar-container img.logo {
-    top: 36px;
-    left: 40px;
-    width: 140px;
-    height: 140px;
-    margin-left: 0;
+  .logo-container {
+    position: relative;
+    height: 100%;
+    float: left;
   }
 
-  .description-container {
+  .logo-container img.logo {
+    position: relative;
+    top: 36px;
+    padding-left: 24px;
+    padding-right: 24px;
+    width: 140px;
+    height: 140px;
+  }
+
+  .desciption-container {
     display: block;
   }
 
