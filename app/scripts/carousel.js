@@ -2,16 +2,60 @@
 	'use strict';  
 	function carousel() {
 		var current = 0,
-			container;
+			$container;
 
-		function init(containerElem) {
-			container = containerElem;
-			setupPagers();
+		function init(container) {
+			var carouselSrc;
+
+			$container = $(container);
+			carouselSrc = $container.data().carouselSrc;
+
+			load(carouselSrc, function(carouselConfig) {
+				var images = createImageElements(carouselConfig);
+				buildDisplay(images)
+				setupPagers();
+			});
 		}
 
 		function rotate(n) {
 			current = n;
 			console.log('Rotate to : ' + current);
+		}
+
+		function load(url, cb) {
+			$.getJSON(url).done(function(data) {
+				cb(data);
+			});
+		}
+
+		function createImageElements(carouselConfig) {
+			var images = [];
+			carouselConfig.images.forEach(function(imageConfig) {
+				var $image = $('<img>').attr({
+					'src': imageConfig.src,
+					'alt': imageConfig.name,
+					'title': imageConfig.name
+				});
+
+				images.push($image);
+			});
+			return images;
+		}
+
+		function buildDisplay(images) {
+			var $display;
+
+			$display = $('<div>').addClass('display');
+
+			images.forEach(function($image, index) {
+				console.log($image);
+				if(index !== current) {
+					$image.css('display', 'none');
+				}
+				$display.append($image);
+			});
+
+			$container.append($display);
 		}
 
 		function setupPagers() {
@@ -28,8 +72,8 @@
 				rotate(current + 1);
 			});
 
-			$(container).append($leftPager)
-						.append($rightPager);
+			$container.append($leftPager)
+					  .append($rightPager);
 		}
 
 		return {
