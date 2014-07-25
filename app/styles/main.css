@@ -52,7 +52,7 @@ body {
   height: 80px;
 }
 
-.desciption-container {
+.description-container {
   display: none;
 }
 
@@ -121,7 +121,7 @@ main {
     height: 140px;
   }
 
-  .desciption-container {
+  .description-container {
     display: block;
     position: relative;
     height: 100%;
@@ -129,7 +129,7 @@ main {
     float: left;
   }
 
-  .desciption-container .description {
+  .description-container .description {
     position: absolute;
     bottom: 0;
     padding-bottom: 10px;
@@ -148,11 +148,11 @@ main {
     position: absolute;
     bottom: 0;
     right: 0;
-    padding-bottom: 18px;
+    padding-bottom: 16px;
   }
 
   .contact-container .contact .contact-button {
-    padding: 0 10px;
+    padding: 0 6px;
     display: inline-block;
   }
 
@@ -160,17 +160,18 @@ main {
     background: transparent url("../images/icon-email.png") no-repeat center center;
     width: 36px;
     height: 22px;
-    margin: 2px 0;
+    margin: 2px 2px;
   }
 
   .contact-button .twitter {
     background: transparent url("../images/icon-twitter.png") no-repeat center center;
     width: 32px;
     height: 26px;
+    margin: 0 4px;
   }
 
   .icon {
-    display: block;
+    display: inline-block;
     background-color: red;
     overflow: hidden;
   }
