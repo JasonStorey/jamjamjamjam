@@ -1,0 +1,21 @@
+#carousel {
+  position: relative;
+  width: 100%;
+}
+
+#carousel .pager {
+  display: block;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  background-color: gray;
+}
+
+#carousel .left-pager {
+  left: 0;
+}
+
+#carousel .right-pager {
+  right: 0;
+}

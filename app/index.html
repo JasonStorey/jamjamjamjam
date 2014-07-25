@@ -27,8 +27,9 @@
     <link rel="canonical" href="http://www.example.com/">
     -->
 
-    <!-- build:css styles/components/main.min.css -->
+    <!-- build:css styles/main.min.css -->
     <link rel="stylesheet" href="styles/h5bp.css">
+    <link rel="stylesheet" href="styles/carousel.css">
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
@@ -55,12 +56,13 @@
     </header>
 
     <main>
-      
+      <div id="carousel"></div>
     </main>
-
+    
+    <script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"></script>
     <!-- build:js scripts/main.min.js -->
+    <script src="scripts/carousel.js"></script>
     <script src="scripts/main.js"></script>
-    <script src="scripts/test.js"></script>
     <!-- endbuild -->
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
