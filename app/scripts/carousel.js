@@ -1,7 +1,8 @@
 (function (window, $) {
 	'use strict';  
 	function carousel() {
-		var current,
+		var startIndex = 0,
+			current,
 			prev,
 			$container,
 			$leftPager,
@@ -16,9 +17,10 @@
 
 			load(carouselSrc, function(carouselConfig) {
 				images = createImageElements(carouselConfig);
-				buildDisplay(images);
-				setupPagers();
-				rotate(0);
+				buildDisplay(images, function() {
+					setupPagers();
+					rotate(startIndex);
+				});				
 			});
 		}
 
@@ -45,6 +47,15 @@
 			});
 		}
 
+		function centerImage(n) {
+			var $image = images[n],
+				width = $image.width();
+
+			$image.css({
+				'margin-left': '-' + (width / 2) + 'px'
+			});
+		}
+
 		function createImageElements(carouselConfig) {
 			var images = [];
 			carouselConfig.images.forEach(function(imageConfig) {
@@ -63,16 +74,22 @@
 			if(prev !== undefined) {
 				images[prev].removeClass('visible');
 			}
-
 			images[current].addClass('visible');
 		}
 
-		function buildDisplay(images) {
+		function buildDisplay(images, cb) {
 			var $display;
 
 			$display = $('<div>').addClass('display');
 
 			images.forEach(function($image, index) {
+				$image.on('load', function() {
+					centerImage(index);
+					if(index === startIndex) {
+						cb();
+					}
+				});
+
 				$display.append($image);
 			});
 

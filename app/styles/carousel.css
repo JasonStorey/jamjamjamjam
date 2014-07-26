@@ -17,7 +17,6 @@
   top: 130px;
   cursor: pointer;
   background-color: rgb(183, 185, 184);
-  z-index: 2;
 }
 
 #carousel .pager.disabled {
@@ -34,15 +33,17 @@
 }
 
 #carousel .display {
+  position: relative;
   height: 100%;
   overflow: hidden;
-  z-index: 1;
 }
 
 #carousel .display img {
   display: none;
+  position: absolute;
   height: 100%;
-  margin: 0 auto;
+  top: 0;
+  left: 50%;
 }
 
 #carousel .display img.visible {
