@@ -17,7 +17,7 @@
 
 			load(carouselSrc, function configLoaded(carouselConfig) {				
 				buildDisplay(carouselConfig);
-				setupPagers();
+				buildPagers();
 				rotate(startIndex);
 			});
 		}
@@ -105,7 +105,7 @@
 			}
 		}
 
-		function setupPagers() {			
+		function buildPagers() {			
 			$leftPager = $('<a>').addClass('left-pager pager');
 			$leftPager.click(function() {
 				rotate(current - 1);
