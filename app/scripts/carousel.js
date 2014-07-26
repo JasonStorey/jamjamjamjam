@@ -1,13 +1,13 @@
 (function (window, $) {
 	'use strict';  
 	function carousel() {
-		var startIndex = 0,
+		var images = [],
+			startIndex = 0,
 			current,
 			prev,
 			$container,
 			$leftPager,
-			$rightPager,
-			images;
+			$rightPager;
 
 		function init(container) {
 			var carouselSrc;
@@ -15,12 +15,10 @@
 			$container = $(container);
 			carouselSrc = $container.data().carouselSrc;
 
-			load(carouselSrc, function(carouselConfig) {
-				images = createImageElements(carouselConfig);
-				buildDisplay(images, function() {
-					setupPagers();
-					rotate(startIndex);
-				});				
+			load(carouselSrc, function configLoaded(carouselConfig) {				
+				buildDisplay(carouselConfig);
+				setupPagers();
+				rotate(startIndex);
 			});
 		}
 
@@ -47,27 +45,28 @@
 			});
 		}
 
-		function centerImage(n) {
-			var $image = images[n],
-				width = $image.width();
+		function centerImage($image) {
+			var width = $image.width();
 
 			$image.css({
 				'margin-left': '-' + (width / 2) + 'px'
 			});
 		}
 
-		function createImageElements(carouselConfig) {
-			var images = [];
-			carouselConfig.images.forEach(function(imageConfig) {
+		function createImageElements(carouselConfig, cb) {
+			carouselConfig.images.forEach(function(imageConfig, index) {
 				var $image = $('<img>').attr({
 					'src': imageConfig.src,
 					'alt': imageConfig.name,
 					'title': imageConfig.name
 				});
 
+				$image.on('load', function() {
+					cb($image);
+				});
+
 				images.push($image);
 			});
-			return images;
 		}
 
 		function updateDisplay() {
@@ -77,20 +76,14 @@
 			images[current].addClass('visible');
 		}
 
-		function buildDisplay(images, cb) {
+		function buildDisplay(carouselConfig) {
 			var $display;
 
 			$display = $('<div>').addClass('display');
 
-			images.forEach(function($image, index) {
-				$image.on('load', function() {
-					centerImage(index);
-					if(index === startIndex) {
-						cb();
-					}
-				});
-
+			createImageElements(carouselConfig, function onImageLoad($image) {
 				$display.append($image);
+				centerImage($image);
 			});
 
 			$container.append($display);
