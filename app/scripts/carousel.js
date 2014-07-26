@@ -67,12 +67,17 @@
 
 				images.push($image);
 			});
+
+			$(window).on('resize', function() {
+				centerImage(images[current]);
+			});
 		}
 
 		function updateDisplay() {
 			if(prev !== undefined) {
 				images[prev].removeClass('visible');
 			}
+			centerImage(images[current]);
 			images[current].addClass('visible');
 		}
 
