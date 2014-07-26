@@ -32,14 +32,14 @@
   overflow: hidden;
 }
 
-#carousel .display img.hidden {
+#carousel .display img {
   display: none;
+  height: 100%;
+  margin: 0 auto;
 }
 
-#carousel .display img {
-  height: 100%;
+#carousel .display img.visible {
   display: block;
-  margin: 0 auto;
 }
 
 @media all and (min-width: 990px) {

@@ -1,7 +1,7 @@
 (function (window, $) {
 	'use strict';  
 	function carousel() {
-		var current = 0,
+		var current,
 			prev,
 			$container,
 			$leftPager,
@@ -17,9 +17,8 @@
 			load(carouselSrc, function(carouselConfig) {
 				images = createImageElements(carouselConfig);
 				buildDisplay(images);
-				updateDisplay();
 				setupPagers();
-				updatePagers();
+				rotate(0);
 			});
 		}
 
@@ -31,6 +30,9 @@
 				current = images.length -1;
 			} else {
 				current = n;	
+			}
+			if(prev === current) {
+				return;
 			}
 			console.log('Rotate to : ' + current);
 			updateDisplay();
@@ -58,16 +60,10 @@
 		}
 
 		function updateDisplay() {
-			if(prev === current) {
-				return;
-			}
-
 			if(prev !== undefined) {
 				images[prev].removeClass('visible');
-				images[prev].addClass('hidden');
 			}
 
-			images[current].removeClass('hidden');
 			images[current].addClass('visible');
 		}
 
@@ -78,7 +74,6 @@
 
 			images.forEach(function($image, index) {
 				console.log($image);
-				$image.addClass('hidden');
 				$display.append($image);
 			});
 
