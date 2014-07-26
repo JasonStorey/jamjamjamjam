@@ -73,7 +73,6 @@
 			$display = $('<div>').addClass('display');
 
 			images.forEach(function($image, index) {
-				console.log($image);
 				$display.append($image);
 			});
 
