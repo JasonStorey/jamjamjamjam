@@ -2,7 +2,11 @@
 	'use strict';  
 	function carousel() {
 		var current = 0,
-			$container;
+			prev,
+			$container,
+			$leftPager,
+			$rightPager,
+			images;
 
 		function init(container) {
 			var carouselSrc;
@@ -11,15 +15,26 @@
 			carouselSrc = $container.data().carouselSrc;
 
 			load(carouselSrc, function(carouselConfig) {
-				var images = createImageElements(carouselConfig);
-				buildDisplay(images)
+				images = createImageElements(carouselConfig);
+				buildDisplay(images);
+				updateDisplay();
 				setupPagers();
+				updatePagers();
 			});
 		}
 
 		function rotate(n) {
-			current = n;
+			prev = current;
+			if(n < 0) {
+				current = 0;
+			} else if (n > images.length -1) {
+				current = images.length -1;
+			} else {
+				current = n;	
+			}
 			console.log('Rotate to : ' + current);
+			updateDisplay();
+			updatePagers();
 		}
 
 		function load(url, cb) {
@@ -42,6 +57,20 @@
 			return images;
 		}
 
+		function updateDisplay() {
+			if(prev === current) {
+				return;
+			}
+
+			if(prev !== undefined) {
+				images[prev].removeClass('visible');
+				images[prev].addClass('hidden');
+			}
+
+			images[current].removeClass('hidden');
+			images[current].addClass('visible');
+		}
+
 		function buildDisplay(images) {
 			var $display;
 
@@ -49,19 +78,25 @@
 
 			images.forEach(function($image, index) {
 				console.log($image);
-				if(index !== current) {
-					$image.css('display', 'none');
-				}
+				$image.addClass('hidden');
 				$display.append($image);
 			});
 
 			$container.append($display);
 		}
 
-		function setupPagers() {
-			var $leftPager,
-				$rightPager;
-			
+		function updatePagers() {
+			if(current === 0) {
+				$leftPager.addClass('disabled');
+			} else if (current === images.length - 1) {
+				$rightPager.addClass('disabled');
+			} else {
+				$rightPager.removeClass('disabled');
+				$leftPager.removeClass('disabled');
+			}
+		}
+
+		function setupPagers() {			
 			$leftPager = $('<a>').addClass('left-pager pager');
 			$leftPager.click(function() {
 				rotate(current - 1);
