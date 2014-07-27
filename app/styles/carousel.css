@@ -60,12 +60,12 @@
   background: #ffffff;
 }
 
-#carousel .footer .footswitch-container {
+#carousel .footer .category-container {
   height: 100%;
   margin: 0 auto;
 }
 
-#carousel .footer .footswitch-container .footswitch {
+#carousel .footer .category-container .category {
   display: block;
   float: left;
   height: 100%;

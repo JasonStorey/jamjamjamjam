@@ -55,7 +55,7 @@
 		}
 
 		function createImageElements(carouselConfig, cb) {
-			carouselConfig.sections[0].images.forEach(function(imageConfig, index) {
+			carouselConfig.categories[0].images.forEach(function(imageConfig, index) {
 				var $image = $('<img>').attr({
 					'src': imageConfig.src,
 					'alt': imageConfig.name,
@@ -122,20 +122,20 @@
 		}
 
 		function buildFooter(carouselConfig) {
-			var footswitchWidth = 80,
+			var categoryWidth = 80,
 				$footer,
-				$footswitchContainer,
-				$footswitch;
+				$categoryContainer,
+				$category;
 
 			$footer = $('<div>').addClass('footer');
-			$footswitchContainer = $('<div>').addClass('footswitch-container')
-											.css('width', (footswitchWidth * carouselConfig.sections.length) + 'px');
+			$categoryContainer = $('<div>').addClass('category-container')
+										   .css('width', (categoryWidth * carouselConfig.categories.length) + 'px');
 
-			$footswitch = $('<a>').addClass('footswitch')
-								.css('width', footswitchWidth + 'px');
+			$category = $('<a>').addClass('category')
+								.css('width', categoryWidth + 'px');
 
-			$footswitchContainer.append($footswitch);
-			$footer.append($footswitchContainer);
+			$categoryContainer.append($category);
+			$footer.append($categoryContainer);
 			$container.append($footer);
 		}
 
