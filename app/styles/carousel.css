@@ -33,8 +33,10 @@
 }
 
 #carousel .display {
-  position: relative;
-  height: 100%;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  bottom: 60px;
   overflow: hidden;
 }
 
@@ -50,7 +52,36 @@
   display: block;
 }
 
+#carousel .footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  height: 60px;
+  background: #ffffff;
+}
+
+#carousel .footer .footswitch-container {
+  height: 100%;
+  margin: 0 auto;
+}
+
+#carousel .footer .footswitch-container .footswitch {
+  display: block;
+  float: left;
+  height: 100%;
+  background-color: rgb(183, 185, 184);
+}
+
 @media all and (min-width: 990px) {
+
+  #carousel .display {
+    bottom: 120px;
+  }
+
+  #carousel .footer {
+    height: 120px;
+  }
+
   #carousel .pager {
     top: 250px;
   }

@@ -18,6 +18,7 @@
 			load(carouselSrc, function configLoaded(carouselConfig) {				
 				buildDisplay(carouselConfig);
 				buildPagers();
+				buildFooter(carouselConfig);
 				rotate(startIndex);
 			});
 		}
@@ -54,7 +55,7 @@
 		}
 
 		function createImageElements(carouselConfig, cb) {
-			carouselConfig.images.forEach(function(imageConfig, index) {
+			carouselConfig.sections[0].images.forEach(function(imageConfig, index) {
 				var $image = $('<img>').attr({
 					'src': imageConfig.src,
 					'alt': imageConfig.name,
@@ -118,6 +119,24 @@
 
 			$container.append($leftPager)
 					  .append($rightPager);
+		}
+
+		function buildFooter(carouselConfig) {
+			var footswitchWidth = 80,
+				$footer,
+				$footswitchContainer,
+				$footswitch;
+
+			$footer = $('<div>').addClass('footer');
+			$footswitchContainer = $('<div>').addClass('footswitch-container')
+											.css('width', (footswitchWidth * carouselConfig.sections.length) + 'px');
+
+			$footswitch = $('<a>').addClass('footswitch')
+								.css('width', footswitchWidth + 'px');
+
+			$footswitchContainer.append($footswitch);
+			$footer.append($footswitchContainer);
+			$container.append($footer);
 		}
 
 		return {

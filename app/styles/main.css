@@ -78,10 +78,10 @@ body {
 }
 
 main {
-  box-sizing: border-box;
-  /* Height of the header */
-  padding: 60px 0 60px 0;
-  height: 100%;
+  position: absolute;
+  width: 100%;
+  top: 60px;
+  bottom: 0;
 }
 
 /** Larger Screens - desktops and tablets **/
@@ -177,9 +177,7 @@ main {
   }
 
   main {
-    padding-top: 0;
-    padding-bottom: 200px;
-    min-height: initial;
+    top: 120px;
   }
 
   body {
