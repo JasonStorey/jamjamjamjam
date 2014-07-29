@@ -122,21 +122,45 @@
 		}
 
 		function buildFooter(carouselConfig) {
-			var categoryWidth = 80,
-				$footer,
-				$categoryContainer,
-				$category;
+			var $footer,
+				$categoriesOuterWrapper,
+				$categoriesInnerWrapper;
 
 			$footer = $('<div>').addClass('footer');
-			$categoryContainer = $('<div>').addClass('category-container')
-										   .css('width', (categoryWidth * carouselConfig.categories.length) + 'px');
+			$categoriesOuterWrapper = $('<div>').addClass('categories-outer-wrapper');
+			$categoriesInnerWrapper = $('<div>').addClass('categories-inner-wrapper');
 
-			$category = $('<a>').addClass('category')
-								.css('width', categoryWidth + 'px');
+			carouselConfig.categories.forEach(function(category) {				
+				var $category = createCategory(category);
+				$categoriesInnerWrapper.append($category);
+			});
 
-			$categoryContainer.append($category);
-			$footer.append($categoryContainer);
+			$categoriesOuterWrapper.append($categoriesInnerWrapper);
+			$footer.append($categoriesOuterWrapper);
 			$container.append($footer);
+		}
+
+		function createCategory(categoryConfig) {
+			var $categoryContainer,
+				$category,
+				$name,
+				$counter;
+
+			$categoryContainer = $('<div>').addClass('category-container');
+
+			$category = $('<a>').addClass('category');
+
+			$name = $('<span>').addClass('category-name')
+							   .text(categoryConfig.name);
+			
+			$counter = $('<span>').addClass('category-counter')
+							   	  .text(categoryConfig.images.length);
+
+			$category.append($name);
+			$category.append($counter);	
+			$categoryContainer.append($category);		
+
+			return $categoryContainer;
 		}
 
 		return {

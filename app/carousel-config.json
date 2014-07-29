@@ -1,18 +1,50 @@
 {
 	"categories": [
 		{
+			"name": "Logo",
 			"images": [
 				{
 					"name": "image 1",
-					"src": "http://placekitten.com/1200/600"
+					"src": "http://placekitten.com/1230/500"
 				},
 				{
 					"name": "image 2",
-					"src": "http://placekitten.com/1200/601"
+					"src": "http://placekitten.com/1210/500"
 				},
 				{
 					"name": "image 3",
-					"src": "http://placekitten.com/1200/602"
+					"src": "http://placekitten.com/1200/500"
+				}
+			]
+		},
+		{
+			"name": "Icon",
+			"images": [
+				{
+					"name": "image 1",
+					"src": "http://placekitten.com/1130/500"
+				}
+			]
+		},
+		{
+			"name": "Print",
+			"images": [
+				{
+					"name": "image 1",
+					"src": "http://placekitten.com/1030/500"
+				},
+				{
+					"name": "image 2",
+					"src": "http://placekitten.com/1010/500"
+				}
+			]
+		},
+		{
+			"name": "Digital",
+			"images": [
+				{
+					"name": "image 1",
+					"src": "http://placekitten.com/1030/600"
 				}
 			]
 		}
