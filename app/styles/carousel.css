@@ -76,7 +76,6 @@
 }
 
 #carousel .footer .category-container {
-  position: relative;
   float: left;
   height: 100%;
   width: 80px;
@@ -93,6 +92,10 @@
 
 #carousel .footer .category-container .category span {
   display: block;
+  position: relative;
+  top: 18%;
+  padding: 1px 0;
+
 }
 
 @media all and (min-width: 990px) {
@@ -104,8 +107,14 @@
   #carousel .footer {
     height: 120px;
   }
+
   #carousel .footer .category-container {
     width: 100px;
+  }
+
+  #carousel .footer .category-container .category span {
+    font-size: 1.2em;
+    padding: 5px 0;
   }
 
   #carousel .pager {
