@@ -1,7 +1,7 @@
 (function (window, $) {
 	'use strict';  
 	function carousel() {
-		var images = [],
+		var imageElements = [],
 			startIndex = 0,
 			current,
 			prev,
@@ -27,8 +27,8 @@
 			prev = current;
 			if(n < 0) {
 				current = 0;
-			} else if (n > images.length -1) {
-				current = images.length -1;
+			} else if (n > imageElements.length -1) {
+				current = imageElements.length -1;
 			} else {
 				current = n;	
 			}
@@ -54,8 +54,8 @@
 			});
 		}
 
-		function createImageElements(carouselConfig, cb) {
-			carouselConfig.categories[0].images.forEach(function(imageConfig, index) {
+		function createImageElements(imagesArray, cb) {
+			imagesArray.forEach(function(imageConfig, index) {
 				var $image = $('<img>').attr({
 					'src': imageConfig.src,
 					'alt': imageConfig.name,
@@ -66,20 +66,20 @@
 					cb($image);
 				});
 
-				images.push($image);
+				imageElements.push($image);
 			});
 
 			$(window).on('resize', function() {
-				centerImage(images[current]);
+				centerImage(imageElements[current]);
 			});
 		}
 
 		function updateDisplay() {
 			if(prev !== undefined) {
-				images[prev].removeClass('visible');
+				imageElements[prev].removeClass('visible');
 			}
-			centerImage(images[current]);
-			images[current].addClass('visible');
+			centerImage(imageElements[current]);
+			imageElements[current].addClass('visible');
 		}
 
 		function buildDisplay(carouselConfig) {
@@ -87,7 +87,7 @@
 
 			$display = $('<div>').addClass('display');
 
-			createImageElements(carouselConfig, function onImageLoad($image) {
+			createImageElements(carouselConfig.categories[0].images, function onImageLoad($image) {
 				$display.append($image);
 				centerImage($image);
 			});
@@ -98,7 +98,7 @@
 		function updatePagers() {
 			if(current === 0) {
 				$leftPager.addClass('disabled');
-			} else if (current === images.length - 1) {
+			} else if (current === imageElements.length - 1) {
 				$rightPager.addClass('disabled');
 			} else {
 				$rightPager.removeClass('disabled');
@@ -147,12 +147,10 @@
 				$counter;
 
 			$categoryContainer = $('<div>').addClass('category-container');
-
 			$category = $('<a>').addClass('category');
-
 			$name = $('<span>').addClass('category-name')
 							   .text(categoryConfig.name);
-			
+
 			$counter = $('<span>').addClass('category-counter')
 							   	  .text(categoryConfig.images.length);
 
