@@ -1,11 +1,13 @@
 (function (window, $) {
 	'use strict';  
 	function carousel() {
-		var imageElements = [],
+		var categories = [],
 			startIndex = 0,
+			currentCategoryIndex = 0,
 			current,
 			prev,
 			$container,
+			$display,
 			$leftPager,
 			$rightPager;
 
@@ -16,10 +18,23 @@
 			carouselSrc = $container.data().carouselSrc;
 
 			load(carouselSrc, function configLoaded(carouselConfig) {				
-				buildDisplay(carouselConfig);
+				$display = buildDisplay(carouselConfig);
+
+				loadCategory(carouselConfig, currentCategoryIndex);
+
 				buildPagers();
 				buildFooter(carouselConfig);
 				rotate(startIndex);
+			});
+		}
+
+		function loadCategory(carouselConfig, index) {
+			if(categories[index]) {
+				return;
+			}
+			categories[index] = createImageElements(carouselConfig.categories[index].images, function onImageLoad($image) {
+				$display.append($image);
+				centerImage($image);
 			});
 		}
 
@@ -27,8 +42,8 @@
 			prev = current;
 			if(n < 0) {
 				current = 0;
-			} else if (n > imageElements.length -1) {
-				current = imageElements.length -1;
+			} else if (n > categories[currentCategoryIndex].length -1) {
+				current = categories[currentCategoryIndex].length -1;
 			} else {
 				current = n;	
 			}
@@ -55,6 +70,7 @@
 		}
 
 		function createImageElements(imagesArray, cb) {
+			var imageElements = [];
 			imagesArray.forEach(function(imageConfig, index) {
 				var $image = $('<img>').attr({
 					'src': imageConfig.src,
@@ -72,14 +88,16 @@
 			$(window).on('resize', function() {
 				centerImage(imageElements[current]);
 			});
+
+			return imageElements;
 		}
 
 		function updateDisplay() {
 			if(prev !== undefined) {
-				imageElements[prev].removeClass('visible');
+				categories[currentCategoryIndex][prev].removeClass('visible');
 			}
-			centerImage(imageElements[current]);
-			imageElements[current].addClass('visible');
+			centerImage(categories[currentCategoryIndex][current]);
+			categories[currentCategoryIndex][current].addClass('visible');
 		}
 
 		function buildDisplay(carouselConfig) {
@@ -87,18 +105,15 @@
 
 			$display = $('<div>').addClass('display');
 
-			createImageElements(carouselConfig.categories[0].images, function onImageLoad($image) {
-				$display.append($image);
-				centerImage($image);
-			});
-
 			$container.append($display);
+
+			return $display;
 		}
 
 		function updatePagers() {
 			if(current === 0) {
 				$leftPager.addClass('disabled');
-			} else if (current === imageElements.length - 1) {
+			} else if (current === categories[currentCategoryIndex].length - 1) {
 				$rightPager.addClass('disabled');
 			} else {
 				$rightPager.removeClass('disabled');
