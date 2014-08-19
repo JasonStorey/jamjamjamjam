@@ -86,8 +86,12 @@
   height: 100%;
   width: 100%;
   cursor: pointer;
-  color: #000000;
+  color: #BEBEBE;
   text-align: center;
+}
+
+#carousel .footer .category-container.selected a.category {
+  color: #000000;
 }
 
 #carousel .footer .category-container .category span {
