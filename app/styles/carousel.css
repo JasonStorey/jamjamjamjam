@@ -126,4 +126,12 @@
   #carousel .pager {
     margin-top: -85px;
   }
+
+  #carousel .left-pager {
+    left: 100px;
+  }
+
+  #carousel .right-pager {
+    right: 100px;
+  }
 }

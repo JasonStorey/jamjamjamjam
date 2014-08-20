@@ -22,7 +22,15 @@
 			"images": [
 				{
 					"name": "image 1",
-					"src": "http://placekitten.com/1130/500"
+					"src": "http://placekitten.com/1400/700"
+				},
+				{
+					"name": "image 2",
+					"src": "http://placekitten.com/1430/700"
+				},
+				{
+					"name": "image 3",
+					"src": "http://placekitten.com/1330/700"
 				}
 			]
 		},
