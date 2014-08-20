@@ -28,7 +28,9 @@
 		function showImage(index, category) {
 			var $imageToShow = categories[category].images[index];
 			
-			if($imageToShow === $currentImage) return;
+			if($imageToShow === $currentImage) {
+				return;
+			}
 			
 			hideCurrentImage();
 			centerImage($imageToShow);
@@ -37,7 +39,9 @@
 		}
 
 		function hideCurrentImage() {
-			if(!$currentImage) return;
+			if(!$currentImage) {
+				return;
+			}
 			$currentImage.removeClass('visible');
 		}
 

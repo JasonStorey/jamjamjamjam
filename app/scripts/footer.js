@@ -65,7 +65,9 @@
 
 			$categoryToSelect = $categories[index];
 
-			if($categoryToSelect === $currentCategory) return;
+			if($categoryToSelect === $currentCategory) {
+				return;
+			}
 
 			if($currentCategory) {
 				$currentCategory.find('.category-counter').text(categoriesConfig.categories[currentCategoryIndex].images.length);
@@ -78,8 +80,10 @@
 		}
 
 		function updateCounter(index) {
-			if(!$currentCategory) return;
-			$currentCategory.find('.category-counter').text((index + 1) + '/' + categoriesConfig.categories[currentCategoryIndex].images.length)
+			if(!$currentCategory) {
+				return;
+			}
+			$currentCategory.find('.category-counter').text((index + 1) + '/' + categoriesConfig.categories[currentCategoryIndex].images.length);
 		}
 
 		function onCategorySwitch(cb) {
