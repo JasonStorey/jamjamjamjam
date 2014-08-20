@@ -5,11 +5,15 @@
 		var $footer,
 			$categories = [],
 			$currentCategory,
-			onSwitchCallback = function(){};
+			onSwitchCallback = function(){},
+			currentCategoryIndex,
+			categoriesConfig;
 
 		function init(config) {
 			var $categoriesOuterWrapper,
 				$categoriesInnerWrapper;
+
+			categoriesConfig = config;
 
 			$footer = $('<div>').addClass('footer');
 			$categoriesOuterWrapper = $('<div>').addClass('categories-outer-wrapper');
@@ -34,8 +38,8 @@
 		function createCategory(categoryConfig, index) {
 			var $categoryContainer,
 				$category,
-				$name,
-				$counter;
+				$counter,
+				$name;
 
 			$categoryContainer = $('<div>').addClass('category-container');
 			$category = $('<a>').addClass('category');
@@ -57,16 +61,25 @@
 		}
 
 		function selectCategory(index) {
-			var $categoryToSelect = $categories[index];
+			var $categoryToSelect;
+
+			$categoryToSelect = $categories[index];
 
 			if($categoryToSelect === $currentCategory) return;
 
 			if($currentCategory) {
+				$currentCategory.find('.category-counter').text(categoriesConfig.categories[currentCategoryIndex].images.length);
 				$currentCategory.removeClass('selected');	
 			}
-			onSwitchCallback(index);
+			currentCategoryIndex = index;
 			$categoryToSelect.addClass('selected');
 			$currentCategory = $categoryToSelect;
+			onSwitchCallback(index);
+		}
+
+		function updateCounter(index) {
+			if(!$currentCategory) return;
+			$currentCategory.find('.category-counter').text((index + 1) + '/' + categoriesConfig.categories[currentCategoryIndex].images.length)
 		}
 
 		function onCategorySwitch(cb) {
@@ -76,7 +89,8 @@
 		return {
 			init: init,
 			draw: draw,
-			onCategorySwitch: onCategorySwitch
+			onCategorySwitch: onCategorySwitch,
+			updateCounter: updateCounter
 		};
 	}
 

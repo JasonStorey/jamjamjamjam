@@ -22,6 +22,7 @@
 				CAROUSEL.pagers.init(carouselConfig.categories[categoryIndex].images);
 				CAROUSEL.pagers.onPage(function(index) {
 					CAROUSEL.display.showImage(index, categoryIndex);
+					CAROUSEL.footer.updateCounter(index);
 				});
 
 				CAROUSEL.display.draw($container);
