@@ -51,22 +51,6 @@
 				return;
 			}
 			onPageCallback(currentIndex);
-			// REMOVED DISABLED STATE
-			//updatePagers();
-		}
-
-		function updatePagers() {
-			if(currentIndex === 0) {
-				$leftPager.addClass('disabled');
-			} else {
-				$leftPager.removeClass('disabled');
-			}
-
-			if (currentIndex === items.length - 1) {
-				$rightPager.addClass('disabled');
-			} else {
-				$rightPager.removeClass('disabled');
-			}
 		}
 
 		function onPage(cb) {
