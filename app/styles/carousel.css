@@ -18,19 +18,23 @@
   z-index: 1;
   margin-top: -65px;
   cursor: pointer;
-  background-color: rgb(183, 185, 184);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 #carousel .pager.disabled {
-  background-color: rgb(0, 0, 0);
+  background-image: url("../images/jam-arrow-no.png");
   cursor: default;
 }
 
 #carousel .left-pager {
   left: 0;
+  background-image: url("../images/jam-arrow-left.png");
 }
 
 #carousel .right-pager {
+  background-image: url("../images/jam-arrow-right.png");
   right: 0;
 }
 
