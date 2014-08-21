@@ -1,33 +1,65 @@
 (function (window, $) {
 	'use strict';  
 	function carousel(CAROUSEL) {
-		var $container;
+		var $container,
+			FOOTER = CAROUSEL.footer,
+			PAGERS = CAROUSEL.pagers,
+			DISPLAY = CAROUSEL.display;
 
 		function init(container) {
 			var carouselSrc,
-				categoryIndex = 0;
+				categoryIndex = 0,
+				imageIndex = 0;
 
 			$container = $(container);
 			carouselSrc = $container.data().carouselSrc;
 
 			load(carouselSrc, function configLoaded(carouselConfig) {
-				CAROUSEL.display.init(carouselConfig);
-
-				CAROUSEL.footer.init(carouselConfig);
-				CAROUSEL.footer.onCategorySwitch(function(index) {
+				DISPLAY.init(carouselConfig);
+				FOOTER.init(carouselConfig);
+				PAGERS.init(carouselConfig.categories[categoryIndex].images);
+				
+				FOOTER.onCategorySwitch(function(index) {
 					categoryIndex = index;
-					CAROUSEL.pagers.setItems(carouselConfig.categories[categoryIndex].images);
+					PAGERS.setItems(carouselConfig.categories[categoryIndex].images, imageIndex);
 				});
 
-				CAROUSEL.pagers.init(carouselConfig.categories[categoryIndex].images);
-				CAROUSEL.pagers.onPage(function(index) {
-					CAROUSEL.display.showImage(index, categoryIndex);
-					CAROUSEL.footer.updateCounter(index);
+				FOOTER.onClick(function(index){
+					imageIndex = 0;
+					FOOTER.selectCategory(index);
+				});
+				
+				PAGERS.onPage(function(index) {
+					imageIndex = index;
+					DISPLAY.showImage(imageIndex, categoryIndex);
+					FOOTER.updateCounter(imageIndex);
 				});
 
-				CAROUSEL.display.draw($container);
-				CAROUSEL.pagers.draw($container);
-				CAROUSEL.footer.draw($container);
+				PAGERS.onMax(function() {
+					categoryIndex++;
+
+					if(categoryIndex === carouselConfig.categories.length) {
+						categoryIndex = 0;
+					}
+
+					imageIndex = 0;
+					FOOTER.selectCategory(categoryIndex);
+				});
+
+				PAGERS.onMin(function() {
+					categoryIndex--;
+
+					if(categoryIndex === -1) {
+						categoryIndex = carouselConfig.categories.length - 1;						
+					}
+
+					imageIndex = carouselConfig.categories[categoryIndex].images.length - 1;					
+					FOOTER.selectCategory(categoryIndex);
+				});
+
+				DISPLAY.draw($container);
+				PAGERS.draw($container, imageIndex);
+				FOOTER.draw($container);
 			});
 		}
 

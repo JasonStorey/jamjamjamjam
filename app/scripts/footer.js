@@ -6,6 +6,7 @@
 			$categories = [],
 			$currentCategory,
 			onSwitchCallback = function(){},
+			onClickCallback = function(){},
 			currentCategoryIndex,
 			categoriesConfig;
 
@@ -54,7 +55,7 @@
 			$categoryContainer.append($category);
 
 			$category.click(function() {
-				selectCategory(index);
+				onClickCallback(index);
 			});
 
 			return $categoryContainer;
@@ -90,11 +91,17 @@
 			onSwitchCallback = cb;
 		}
 
+		function onClick(cb) {
+			onClickCallback = cb;
+		}
+
 		return {
 			init: init,
 			draw: draw,
 			onCategorySwitch: onCategorySwitch,
-			updateCounter: updateCounter
+			updateCounter: updateCounter,
+			selectCategory: selectCategory,
+			onClick: onClick
 		};
 	}
 

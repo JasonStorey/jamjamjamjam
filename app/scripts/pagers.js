@@ -5,6 +5,8 @@
 			$rightPager,
 			items = [],
 			onPageCallback = function(){},
+			onMinCallback = function(){},
+			onMaxCallback = function(){},
 			currentIndex,
 			prevIndex;
 
@@ -22,33 +24,35 @@
 			});
 		}
 
-		function draw($container) {
+		function draw($container, imageIndex) {
 			$container.append($leftPager)
 					  .append($rightPager);
-			rotate(0);
+			rotate(imageIndex);
 		}
 
-		function setItems(itemsArray) {
+		function setItems(itemsArray, imageIndex) {
 			currentIndex = undefined;
 			items = itemsArray;
-			rotate(0);
+			rotate(imageIndex);
 		}
 
 		function rotate(n) {
 			prevIndex = currentIndex;
 			if(n < 0) {
 				currentIndex = 0;
+				onMinCallback();
 			} else if (n > items.length - 1) {
 				currentIndex = items.length -1;
+				onMaxCallback();
 			} else {
-				currentIndex = n;	
+				currentIndex = n;
 			}
 			if(prevIndex === currentIndex) {
 				return;
 			}
-			console.log('Rotate to : ' + currentIndex);
 			onPageCallback(currentIndex);
-			updatePagers();
+			// REMOVED DISABLED STATE
+			//updatePagers();
 		}
 
 		function updatePagers() {
@@ -68,12 +72,22 @@
 		function onPage(cb) {
 			onPageCallback = cb;
 		}
+		
+		function onMin(cb) {
+			onMinCallback = cb;
+		}
+
+		function onMax(cb) {
+			onMaxCallback = cb;
+		}
 
 		return {
 			init: init,
 			draw: draw,
 			setItems: setItems,
-			onPage: onPage
+			onPage: onPage,
+			onMin: onMin,
+			onMax: onMax
 		};
 	}
 
