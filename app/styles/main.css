@@ -132,14 +132,14 @@ main {
   .description-container .description {
     position: absolute;
     bottom: 0;
-    padding-bottom: 6px;
+    padding-bottom: 8px;
   }
 
   .description-container .description p {
     position: relative;
     color: #ffffff;
     font-size: 15px;
-    margin: 5px 0;
+    margin: 4px 0;
     line-height: 20px;
   }
 
