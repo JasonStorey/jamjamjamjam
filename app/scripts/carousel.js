@@ -24,7 +24,7 @@
 					PAGERS.setItems(carouselConfig.categories[categoryIndex].images, imageIndex);
 				});
 
-				FOOTER.onClick(function(index){
+				FOOTER.onClick(function(index) {
 					imageIndex = 0;
 					FOOTER.selectCategory(index);
 				});

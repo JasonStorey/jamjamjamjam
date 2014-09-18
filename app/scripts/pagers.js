@@ -13,15 +13,13 @@
 		function init(itemsArray) {
 			items = itemsArray;
 
-			$leftPager = $('<a>').addClass('left-pager pager');
-			$leftPager.click(function() {
-				rotate(currentIndex - 1);
-			});
+			$leftPager = $('<a>').addClass('left-pager pager')
+								 .click(rotateLeft);
 
-			$rightPager = $('<a>').addClass('right-pager pager');
-			$rightPager.click(function() {
-				rotate(currentIndex + 1);
-			});
+			$rightPager = $('<a>').addClass('right-pager pager')
+								  .click(rotateRight);
+
+			setupKeyListeners();
 		}
 
 		function draw($container, imageIndex) {
@@ -34,6 +32,24 @@
 			currentIndex = undefined;
 			items = itemsArray;
 			rotate(imageIndex);
+		}
+
+		function setupKeyListeners() {
+			$('body').keydown(function(e) {
+				if(e.which === 37) {
+					rotateLeft();
+				} else if(e.which === 39) {
+					rotateRight();
+				}
+			});
+		}
+
+		function rotateLeft() {
+			rotate(currentIndex - 1);
+		}
+
+		function rotateRight() {
+			rotate(currentIndex + 1);
 		}
 
 		function rotate(n) {
